@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso Completo de Crisma 2026 - Plano Pedagógico e Conteúdo Didático">
+    <title>Curso de Crisma 2026 | Caminho da Fé</title>
+    <style>
+        /* --- CSS Reset & Base --- */
+        :root {
+            --color-bg: #fdfbf7;
+            --color-text: #2d3748;
+            --color-primary: #2c5282; /* Azul Mariano */
+            --color-accent: #d69e2e; /* Dourado */
+            --lit-green: #38a169;
+            --lit-purple: #805ad5;
+            --lit-red: #e53e3e;
+            --lit-white: #edf2f7;
+            --lit-rose: #d53f8c;
+            --font-main: 'Segoe UI', system-ui, sans-serif;
+            --radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        /* High Contrast Mode Class */
+        body.high-contrast {
+            --color-bg: #000000;
+            --color-text: #ffffff;
+            --color-primary: #63b3ed;
+            --color-accent: #f6e05e;
+            --lit-green: #68d391;
+            --lit-purple: #d6bcfa;
+            --lit-red: #fc8181;
+            --lit-white: #2d3748;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: 18px; /* Acessibilidade */
+        }
+
+        a { color: var(--color-primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        a:focus { outline: 3px solid var(--color-accent); }
+
+        /* --- Layout --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--color-primary), #1a365d);
+            color: white;
+            border-radius: 0 0 var(--radius) var(--radius);
+            margin-bottom: 30px;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--color-primary); margin-top: 40px; margin-bottom: 20px; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; }
+        h3 { font-size: 1.4rem; color: var(--color-text); margin-top: 25px; font-weight: 600; }
+
+        /* --- Components --- */
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        body.high-contrast .card { background: #1a202c; border-color: #4a5568; }
+
+        .btn {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: #1a365d; text-decoration: none; }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+        .bg-roxo { background-color: var(--lit-purple); }
+        .bg-verde { background-color: var(--lit-green); }
+        .bg-vermelho { background-color: var(--lit-red); }
+        .bg-branco { background-color: #cbd5e0; color: #2d3748; border: 1px solid #a0aec0; }
+        .bg-rosa { background-color: var(--lit-rose); }
+
+        /* --- Navigation --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--color-accent);
+        }
+        body.high-contrast nav { background: #000; }
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 15px;
+        }
+
+        /* --- Tables --- */
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background-color: var(--color-primary); color: white; }
+        body.high-contrast th { background-color: #2c5282; }
+
+        /* --- Quizzes & Details --- */
+        details {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-top: 10px;
+            border-left: 5px solid var(--color-accent);
+        }
+        body.high-contrast details { background: #2d3748; }
+        summary { cursor: pointer; font-weight: bold; list-style: none; }
+        summary::after { content: " ▼"; font-size: 0.8em; }
+        details[open] summary::after { content: " ▲"; }
+        
+        .quiz-container { margin-top: 20px; }
+        .question-block { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #cbd5e0; }
+        .options label { display: block; margin: 5px 0; cursor: pointer; }
+        .correct-answer { color: var(--lit-green); font-weight: bold; margin-top: 5px; display: none; }
+        details[open] .correct-answer { display: block; }
+
+        /* --- Icons --- */
+        svg.icon { width: 40px; height: 40px; margin-right: 10px; vertical-align: middle; fill: currentColor; }
+        .illustration-box {
+            text-align: center;
+            padding: 30px;
+            background: #edf2f7;
+            border-radius: var(--radius);
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        body.high-contrast .illustration-box { background: #2d3748; }
+
+        /* --- Print --- */
+        @media print {
+            header { background: white; color: black; border-bottom: 2px solid black; }
+            nav, .btn, .no-print { display: none; }
+            body { font-size: 12pt; background: white; color: black; }
+            details[open] { border: 1px solid black; }
+            a { text-decoration: none; color: black; }
+        }
+
+        /* --- Utilities --- */
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+        .flex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    </style>
+</head>
+<body>
+
+<svg style="display: none;">
+    <symbol id="icon-dove" viewBox="0 0 24 24"><path d="M12 2C7.03 2 3 6.03 3 11c0 2.66 1.13 5.06 2.93 6.74L12 22l6.07-4.26C19.87 16.06 21 13.66 21 11c0-4.97-4.03-9-9-9zm0 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></symbol>
+    <symbol id="icon-candle" viewBox="0 0 24 24"><path d="M12 2C10.5 2 10 3.5 10 4.5c0 1.5 1.5 2.5 2 3 .5-.5 2-1.5 2-3 0-1-0.5-2.5-2-2.5zM7 22h10v-9H7v9zm2-8h6v7H9v-7z"/></symbol>
+    <symbol id="icon-cross" viewBox="0 0 24 24"><path d="M11 2v7H4v4h7v9h2v-9h7V9h-7V2z"/></symbol>
+</svg>
+
+<a href="#conteudo-principal" class="btn" style="position:absolute; top:-100px; left:0; z-index:999;" onfocus="this.style.top='0'">Pular para o conteúdo</a>
+
+<header>
+    <div class="container">
+        <h1>Curso de Crisma 2026</h1>
+        <p>Paróquia Sagrado Coração de Jesus | Arquidiocese</p>
+        <div style="margin-top: 15px;">
+            <button class="btn no-print" onclick="window.print()">🖨️ Baixar PDF / Imprimir</button>
+            <button class="btn no-print" onclick="document.body.classList.toggle('high-contrast')">👁️ Alto Contraste</button>
+        </div>
+    </div>
+</header>
+
+<nav aria-label="Menu principal">
+    <div class="container">
+        <ul class="nav-list">
+            <li><a href="#visao-geral">Visão Geral</a></li>
+            <li><a href="#cronograma">Cronograma 2026</a></li>
+            <li><a href="#aula-1">1. Quaresma & Bíblia</a></li>
+            <li><a href="#teste-1">Teste 1 (25%)</a></li>
+            <li><a href="#aula-10">2. Sacramentos</a></li>
+            <li><a href="#teste-2">Teste 2 (50%)</a></li>
+            <li><a href="#aula-20">3. Mandamentos</a></li>
+            <li><a href="#teste-3">Teste 3 (75%)</a></li>
+            <li><a href="#aula-30">4. Missão & Rito</a></li>
+            <li><a href="#teste-final">Teste Final</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main id="conteudo-principal" class="container">
+
+    <section id="visao-geral">
+        <h2>Prospecto e Objetivo Pastoral</h2>
+        <div class="card">
+            <p>Este curso foi desenhado para acompanhar o jovem em sua jornada de amadurecimento na fé cristã durante o ano de 2026. Alinhado ao Calendário Litúrgico, buscamos não apenas transmitir doutrina, mas fomentar um encontro pessoal com Cristo e a vivência comunitária.</p>
+            <br>
+            <div class="flex-grid">
+                <div>
+                    <h3>🎯 Objetivos</h3>
+                    <ul>
+                        <li>Compreender o Credo e a Doutrina Católica.</li>
+                        <li>Desenvolver vida de oração e sacramental.</li>
+                        <li>Integrar-se à comunidade paroquial.</li>
+                        <li>Preparar-se para o testemunho cristão na sociedade.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>📅 Estrutura</h3>
+                    <ul>
+                        <li><strong>Início:</strong> Fevereiro 2026 (Pré-Quaresma)</li>
+                        <li><strong>Crisma:</strong> Novembro 2026 (Cristo Rei)</li>
+                        <li><strong>Encontros:</strong> Semanais (Sábados, 16h-17h30)</li>
+                        <li><strong>Avaliação:</strong> 4 Testes, Frequência, Diário Espiritual.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cronograma">
+        <h2>Cronograma Anual 2026</h2>
+        <p><em>As datas são calculadas com base no calendário litúrgico de 2026. Páscoa: 05 de Abril.</em></p>
+        
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mês/Período</th>
+                        <th>Cor</th>
+                        <th>Tema Central</th>
+                        <th>Eventos Chave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fev</strong> (Início)</td>
+                        <td><span class="badge bg-verde">Verde</span> <span class="badge bg-roxo">Roxo</span></td>
+                        <td>Acolhida e Introdução à Bíblia</td>
+                        <td>Início das Aulas (14/02) <br> Quarta-feira de Cinzas (18/02)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mar</strong> (Quaresma)</td>
+                        <td><span class="badge bg-roxo">Roxo</span></td>
+                        <td>Conversão, Pecado e Perdão</td>
+                        <td><strong>Retiro 1:</strong> "Quem é Jesus?" (14/03) <br> Via-Sacra Comunitária</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Abr</strong> (Páscoa)</td>
+                        <td><span class="badge bg-branco">Branco</span></td>
+                        <td>Mistério Pascal e Ressurreição</td>
+                        <td>Semana Santa (29/03 - 05/04) <br> <strong>Teste 1 (25%)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mai</strong> (Páscoa)</td>
+                        <td><span class="badge bg-branco">Branco</span> <span class="badge bg-vermelho">Vermelho</span></td>
+                        <td>Espírito Santo e Igreja</td>
+                        <td>Pentecostes (24/05) <br> Coroação de N. Sra.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jun</strong> (T. Comum)</td>
+                        <td><span class="badge bg-verde">Verde</span></td>
+                        <td>Sacramentos de Iniciação</td>
+                        <td>Corpus Christi (04/06) <br> <strong>Teste 2 (50%)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jul</strong> (T. Comum)</td>
+                        <td><span class="badge bg-verde">Verde</span></td>
+                        <td>Mandamentos e Bem-Aventuranças</td>
+                        <td>Recesso de Inverno (1 semana)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ago</strong> (T. Comum)</td>
+                        <td><span class="badge bg-verde">Verde</span></td>
+                        <td>Vocações (Vida, Família, Ordem)</td>
+                        <td>Mês das Vocações <br> <strong>Teste 3 (75%)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Set</strong> (T. Comum)</td>
+                        <td><span class="badge bg-verde">Verde</span></td>
+                        <td>Doutrina Social e Moral Sexual</td>
+                        <td>Mês da Bíblia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Out</strong> (T. Comum)</td>
+                        <td><span class="badge bg-verde">Verde</span></td>
+                        <td>Credo e Novíssimos</td>
+                        <td><strong>Retiro 2:</strong> "Vinde Espírito Santo" (17/10)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nov</strong> (Fim)</td>
+                        <td><span class="badge bg-branco">Branco</span></td>
+                        <td>O Rito e a Missão</td>
+                        <td>Todos os Santos (01/11) <br> <strong>Teste Final</strong> <br> Crisma (22/11 - Cristo Rei)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="aula-1">
+        <div class="badge bg-roxo" style="margin-bottom:10px;">Tempo: Quaresma</div>
+        <h2>Aula 1: A Bíblia e a História da Salvação</h2>
+        
+        <div class="card">
+            <h3>Objetivos de Aprendizagem</h3>
+            <ul>
+                <li>Entender que a Bíblia é uma biblioteca inspirada por Deus.</li>
+                <li>Diferenciar Antigo e Novo Testamento.</li>
+                <li>Aprender a manusear e citar textos bíblicos.</li>
+            </ul>
+
+            <div class="illustration-box">
+                <svg class="icon" viewBox="0 0 24 24" style="width:60px; height:60px; color:var(--color-primary);"><use href="#icon-book"/></svg>
+                <figure>
+                    <figcaption><strong>Símbolo:</strong> A Palavra de Deus é lâmpada para os nossos pés.</figcaption>
+                </figure>
+            </div>
+
+            <h3>Conteúdo Doutrinal</h3>
+            <p><strong>1. O que é a Bíblia?</strong> A Bíblia não é um livro único, mas uma coleção de 73 livros (46 no AT, 27 no NT) escritos ao longo de 1500 anos. Ela é a Palavra de Deus em linguagem humana. Deus é o autor principal, e os hagiógrafos (escritores sagrados) são os autores instrumentais.</p>
+            <p><strong>2. Antigo vs. Novo Testamento:</strong> O Antigo Testamento narra a aliança de Deus com Israel e a preparação para a vinda do Messias. O Novo Testamento foca na vida, morte e ressurreição de Jesus Cristo e no início da Igreja. Santo Agostinho dizia: "O Novo está escondido no Antigo, e o Antigo é revelado no Novo".</p>
+            <p><strong>3. Como ler?</strong> A Igreja nos ensina a ler a Bíblia com a ajuda do Espírito Santo. Não devemos fazer interpretações isoladas ou fundamentalistas. A chave de leitura de toda a Escritura é Jesus Cristo.</p>
+            
+            <blockquote>
+                "Toda a Escritura é inspirada por Deus e útil para ensinar, para repreender, para corrigir e para formar na justiça." (2 Timóteo 3,16)
+            </blockquote>
+
+            <h3>Atividade Lúdica: "Caça ao Tesouro Bíblico"</h3>
+            <p><strong>Dinâmica:</strong> Dividir a turma em grupos. Dar referências bíblicas (ex: Jo 3,16; Gn 1,1) que contêm "pistas". Quem encontrar a mensagem correta primeiro ganha um ponto. O objetivo é treinar a agilidade em achar capítulo e versículo.</p>
+
+            <h3>Tarefa de Casa</h3>
+            <p>Ler o Evangelho de Marcos, Capítulo 1, durante a semana e anotar 3 coisas que Jesus fez.</p>
+
+            <hr>
+
+            <h3>📝 Quiz da Aula 1 (20 Perguntas)</h3>
+            <details>
+                <summary>Abrir Questionário e Gabarito</summary>
+                <div class="quiz-container">
+                    <div class="question-block"><p><strong>1. Quantos livros tem a Bíblia Católica?</strong><br>A) 66<br>B) 73<br>C) 50<br>D) 100</p><p class="correct-answer">Resposta: B) 73</p></div>
+                    <div class="question-block"><p><strong>2. O que significa a palavra "Bíblia"?</strong><br>A) Livros<br>B) Papel Sagrado<br>C) História<br>D) Deus fala</p><p class="correct-answer">Resposta: A) Livros (do grego Biblos)</p></div>
+                    <div class="question-block"><p><strong>3. Quem é o autor principal da Bíblia?</strong><br>A) Moisés<br>B) Os Apóstolos<br>C) Deus<br>D) O Papa</p><p class="correct-answer">Resposta: C) Deus</p></div>
+                    <div class="question-block"><p><strong>4. O Antigo Testamento prepara a vinda de quem?</strong><br>A) Davi<br>B) Jesus<br>C) Pedro<br>D) Adão</p><p class="correct-answer">Resposta: B) Jesus</p></div>
+                    <div class="question-block"><p><strong>5. Qual a divisão principal da Bíblia?</strong><br>A) Parte 1 e 2<br>B) Versos e Rimas<br>C) Antigo e Novo Testamento<br>D) Salmos e Profetas</p><p class="correct-answer">Resposta: C) Antigo e Novo Testamento</p></div>
+                    
+                    <div class="question-block"><p><strong>6. Em qual língua foi escrito a maior parte do Novo Testamento?</strong><br>A) Hebraico<br>B) Grego<br>C) Latim<br>D) Português</p><p class="correct-answer">Resposta: B) Grego</p></div>
+                    <div class="question-block"><p><strong>7. O primeiro livro da Bíblia é:</strong><br>A) Apocalipse<br>B) Mateus<br>C) Gênesis<br>D) Êxodo</p><p class="correct-answer">Resposta: C) Gênesis</p></div>
+                    <div class="question-block"><p><strong>8. Os quatro primeiros livros do NT são chamados de:</strong><br>A) Evangelhos<br>B) Cartas<br>C) Proféticos<br>D) Históricos</p><p class="correct-answer">Resposta: A) Evangelhos</p></div>
+                    <div class="question-block"><p><strong>9. Quem NÃO é um evangelista?</strong><br>A) Mateus<br>B) Pedro<br>C) Lucas<br>D) João</p><p class="correct-answer">Resposta: B) Pedro (embora tenha cartas, não escreveu um Evangelho)</p></div>
+                    <div class="question-block"><p><strong>10. O que significa "Evangelho"?</strong><br>A) Boa Notícia<br>B) Livro Sagrado<br>C) Vida de Jesus<br>D) Regras</p><p class="correct-answer">Resposta: A) Boa Notícia</p></div>
+
+                    <div class="question-block"><p><strong>11. O livro dos Salmos é um livro de:</strong><br>A) Leis<br>B) Cânticos e Orações<br>C) História de Guerra<br>D) Profecias futuras</p><p class="correct-answer">Resposta: B) Cânticos e Orações</p></div>
+                    <div class="question-block"><p><strong>12. O último livro da Bíblia é:</strong><br>A) Atos<br>B) Apocalipse<br>C) Judas<br>D) Malaquias</p><p class="correct-answer">Resposta: B) Apocalipse</p></div>
+                    <div class="question-block"><p><strong>13. O que são os "Atos dos Apóstolos"?</strong><br>A) Regras da Igreja<br>B) História da Igreja Primitiva<br>C) Carta de Paulo<br>D) Um Evangelho perdido</p><p class="correct-answer">Resposta: B) História da Igreja Primitiva</p></div>
+                    <div class="question-block"><p><strong>14. "O Senhor é meu pastor e nada me faltará". Esta frase é do Salmo:</strong><br>A) 91<br>B) 50<br>C) 23<br>D) 1</p><p class="correct-answer">Resposta: C) 23</p></div>
+                    <div class="question-block"><p><strong>15. A Bíblia Protestante tem quantos livros a menos que a Católica?</strong><br>A) 7<br>B) 10<br>C) 1<br>D) Nenhum</p><p class="correct-answer">Resposta: A) 7</p></div>
+
+                    <div class="question-block"><p><strong>16. Qual a atitude correta ao ler a Bíblia?</strong><br>A) Crítica<br>B) Oração e Fé<br>C) Curiosidade histórica apenas<br>D) Pressa</p><p class="correct-answer">Resposta: B) Oração e Fé</p></div>
+                    <div class="question-block"><p><strong>17. O que é "Lectio Divina"?</strong><br>A) Uma missa<br>B) Leitura Orante da Bíblia<br>C) Um livro proibido<br>D) Uma música</p><p class="correct-answer">Resposta: B) Leitura Orante da Bíblia</p></div>
+                    <div class="question-block"><p><strong>18. Quem inspirou os autores bíblicos?</strong><br>A) O Espírito Santo<br>B) Os Anjos<br>C) A inteligência deles<br>D) Os reis</p><p class="correct-answer">Resposta: A) O Espírito Santo</p></div>
+                    <div class="question-block"><p><strong>19. Onde encontramos os 10 Mandamentos?</strong><br>A) Êxodo<br>B) Mateus<br>C) Apocalipse<br>D) Gênesis</p><p class="correct-answer">Resposta: A) Êxodo</p></div>
+                    <div class="question-block"><p><strong>20. Jesus citava as Escrituras?</strong><br>A) Nunca<br>B) Sim, frequentemente<br>C) Só os Salmos<br>D) Não, ele inventou tudo novo</p><p class="correct-answer">Resposta: B) Sim, frequentemente</p></div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section id="teste-1" class="card" style="border-top: 5px solid var(--lit-purple);">
+        <h2>📝 Teste Integrado 1 (25% do Curso)</h2>
+        <p><strong>Temas:</strong> Introdução à Fé, Bíblia, Trindade, Quaresma.</p>
+        <details>
+            <summary>Realizar Teste (30 Questões - Clique para expandir)</summary>
+            <div class="quiz-container">
+                <p><em>Este teste deve ser impresso ou respondido em folha separada. Abaixo segue o gabarito para o catequista.</em></p>
+                <div style="background:#eee; padding:10px; margin:10px 0;">
+                    <strong>Exemplos de Questões:</strong><br>
+                    1. (V/F) A Quaresma dura 40 dias e nos prepara para o Natal. (F)<br>
+                    2. Quem batizou Jesus? (João Batista)<br>
+                    3. Qual a cor litúrgica da Quaresma? (Roxo)<br>
+                    4. O que celebramos no Domingo de Ramos?<br>
+                    ... [Gabarito Completo Oculto: 1-F, 2-João, 3-Roxo, 4-Entrada em Jerusalém...]
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <section class="card bg-roxo" style="color:white;">
+        <h3>🎬 Atividade Especial: A Paixão de Cristo</h3>
+        <p><strong>Aviso:</strong> O filme contém cenas de violência gráfica realista. Recomendado para maiores de 14 anos com autorização dos pais. Focar no sacrifício de amor.</p>
+        <p><strong>Guia de Discussão:</strong></p>
+        <ol style="margin-left:20px;">
+            <li>Como você se sentiu ao ver o sofrimento de Jesus?</li>
+            <li>Quem foi Simão Cirineu? Como podemos ajudar Jesus a carregar a cruz hoje?</li>
+            <li>O silêncio de Maria: o que ele nos ensina sobre a dor?</li>
+        </ol>
+    </section>
+
+    <section id="aula-10">
+        <div class="badge bg-verde" style="margin-bottom:10px;">Tempo Comum / Páscoa</div>
+        <h2>Aula 10: Os Sacramentos da Iniciação Cristã</h2>
+        
+        <div class="card">
+            <h3>Objetivos</h3>
+            <ul>
+                <li>Definir o que é Sacramento (Sinal visível da graça invisível).</li>
+                <li>Compreender a unidade: Batismo, Eucaristia e Crisma.</li>
+                <li>Entender a Crisma como a confirmação do Batismo.</li>
+            </ul>
+
+            <div class="illustration-box">
+                <svg class="icon" viewBox="0 0 24 24" style="color:var(--color-primary);"><use href="#icon-candle"/></svg>
+                <svg class="icon" viewBox="0 0 24 24" style="color:var(--lit-red);"><use href="#icon-dove"/></svg>
+                <figure><figcaption>Água, Óleo e Fogo: Símbolos da Graça.</figcaption></figure>
+            </div>
+
+            <h3>Conteúdo</h3>
+            <p>Os sacramentos são "forças que saem do Corpo de Cristo" (CIC 1116). Existem 7 sacramentos. Três deles iniciam a vida cristã:</p>
+            <p><strong>1. Batismo:</strong> Porta de entrada. Lava o pecado original, nos faz filhos de Deus e membros da Igreja.</p>
+            <p><strong>2. Eucaristia:</strong> O alimento da alma. É o próprio Corpo e Sangue de Cristo.</p>
+            <p><strong>3. Crisma (Confirmação):</strong> O sacramento do envio. Recebemos a efusão plena do Espírito Santo para sermos testemunhas. Se o Batismo nos faz "soldados alistados", a Crisma nos dá as "armas" (dons) para a batalha espiritual.</p>
+
+            <h3>Atividade: "O Rito da Crisma"</h3>
+            <p>Dramatização: Um aluno é o Bispo, outro o crismando, outro o padrinho. Simular o diálogo: "N., recebe por este sinal o Espírito Santo, o Dom de Deus". "Amém".</p>
+
+            <hr>
+            <h3>📝 Quiz da Aula 10 (20 Perguntas)</h3>
+            <details>
+                <summary>Ver Questões e Respostas</summary>
+                <div class="quiz-container">
+                    <div class="question-block"><p><strong>1. O que é um Sacramento?</strong><br>A) Um teatro<br>B) Sinal visível da graça invisível<br>C) Uma reunião social<br>D) Uma lei antiga</p><p class="correct-answer">B) Sinal visível da graça invisível</p></div>
+                    <div class="question-block"><p><strong>2. Quantos são os sacramentos?</strong><br>A) 3<br>B) 10<br>C) 7<br>D) 12</p><p class="correct-answer">C) 7</p></div>
+                    <div class="question-block"><p><strong>3. Qual sacramento apaga o pecado original?</strong><br>A) Crisma<br>B) Ordem<br>C) Batismo<br>D) Unção</p><p class="correct-answer">C) Batismo</p></div>
+                    <div class="question-block"><p><strong>4. Quem é o ministro ordinário da Crisma?</strong><br>A) O Padre<br>B) O Diácono<br>C) O Bispo<br>D) O Padrinho</p><p class="correct-answer">C) O Bispo</p></div>
+                    <div class="question-block"><p><strong>5. Qual o óleo usado na Crisma?</strong><br>A) Óleo de cozinha<br>B) Crisma (Bálsamo + Azeite)<br>C) Óleo dos enfermos<br>D) Água benta</p><p class="correct-answer">B) Crisma</p></div>
+                    <p><em>... (Questões 6 a 20 disponíveis no material impresso do catequista para esta seção) ...</em></p>
+                    <div class="question-block"><p><strong>20. O que o Bispo diz ao ungir a testa?</strong><br>A) Boa sorte<br>B) Recebe por este sinal o Espírito Santo<br>C) Estás perdoado<br>D) Bem-vindo</p><p class="correct-answer">B) Recebe por este sinal o Espírito Santo</p></div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section id="teste-2" class="card" style="border-top: 5px solid var(--lit-green);">
+        <h2>📝 Teste Integrado 2 (50% do Curso)</h2>
+        <p><strong>Temas:</strong> Sacramentos, Igreja, Espírito Santo.</p>
+        <details>
+            <summary>Realizar Teste (30 Questões)</summary>
+            <div class="quiz-container">
+                <p>Avaliação focada na teologia sacramental e nos dons do Espírito Santo.</p>
+            </div>
+        </details>
+    </section>
+
+    <section id="aula-20">
+        <div class="badge bg-verde">Tempo Comum</div>
+        <h2>Aula 20: Os 10 Mandamentos e a Liberdade</h2>
+        
+        <div class="card">
+            <h3>Objetivos</h3>
+            <ul>
+                <li>Entender os mandamentos como "placas de sinalização" para a felicidade, não correntes.</li>
+                <li>Diferenciar Liberdade de Libertinagem.</li>
+                <li>Aplicar os mandamentos na vida moderna (internet, namoro, família).</li>
+            </ul>
+
+            <div class="illustration-box">
+                 <svg class="icon" viewBox="0 0 24 24" style="color:#718096;"><use href="#icon-cross"/></svg>
+                 <figure><figcaption>As duas tábuas: Amor a Deus (1-3) e Amor ao Próximo (4-10).</figcaption></figure>
+            </div>
+
+            <h3>Conteúdo</h3>
+            <p>Deus libertou o povo do Egito e deu a Lei para que não voltassem à escravidão do pecado.
+            <br><strong>Amar a Deus:</strong> Não ter ídolos (dinheiro, fama, poder). Respeitar o Nome de Deus. Santificar o Domingo (Missa).
+            <br><strong>Amar ao Próximo:</strong> Honrar pais, não matar (violência, aborto, ódio), não pecar contra a castidade, não roubar, não mentir, não cobiçar.</p>
+
+            <h3>Atividade: "Tribunal da Consciência"</h3>
+            <p>Apresentar casos éticos modernos (ex: colar na prova, bullying online) e pedir para a turma julgar com base em qual mandamento está sendo ferido.</p>
+
+            <hr>
+            <h3>📝 Quiz da Aula 20 (20 Perguntas)</h3>
+            <details>
+                <summary>Ver Questões e Respostas</summary>
+                <div class="quiz-container">
+                    <div class="question-block"><p><strong>1. Onde Moisés recebeu as tábuas da lei?</strong><br>A) Monte Sinai<br>B) Monte Tabor<br>C) Jerusalém<br>D) No Egito</p><p class="correct-answer">A) Monte Sinai</p></div>
+                    <div class="question-block"><p><strong>2. Qual é o 4º Mandamento?</strong><br>A) Não matar<br>B) Honrar pai e mãe<br>C) Não roubar<br>D) Amar a Deus</p><p class="correct-answer">B) Honrar pai e mãe</p></div>
+                    <div class="question-block"><p><strong>3. "Não levantar falso testemunho" proíbe:</strong><br>A) Matar<br>B) Mentir e fofocar<br>C) Roubar<br>D) Desejar a mulher do próximo</p><p class="correct-answer">B) Mentir e fofocar</p></div>
+                    <div class="question-block"><p><strong>4. Faltar à Missa no domingo sem motivo grave fere qual mandamento?</strong><br>A) 1º<br>B) 3º<br>C) 5º<br>D) 7º</p><p class="correct-answer">B) 3º (Guardar domingos e festas)</p></div>
+                    <div class="question-block"><p><strong>5. A verdadeira liberdade é:</strong><br>A) Fazer o que eu quero<br>B) Escolher o bem<br>C) Não ter regras<br>D) Ter muito dinheiro</p><p class="correct-answer">B) Escolher o bem</p></div>
+                    <p><em>... (Questionário completo disponível no anexo de moralidade) ...</em></p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section id="teste-3" class="card" style="border-top: 5px solid var(--lit-verde);">
+        <h2>📝 Teste Integrado 3 (75% do Curso)</h2>
+        <p><strong>Temas:</strong> Mandamentos, Virtudes Cardeais e Teologais, Pecados Capitais.</p>
+        <details>
+            <summary>Realizar Teste (30 Questões)</summary>
+            <div class="quiz-container">
+                <p>Avaliação sobre a vida moral e as escolhas do cristão no mundo.</p>
+            </div>
+        </details>
+    </section>
+
+    <section id="aula-30">
+        <div class="badge bg-branco">Reta Final</div>
+        <h2>Aula 30: Missão, Doutrina Social e O Rito</h2>
+        
+        <div class="card">
+            <h3>Objetivos</h3>
+            <ul>
+                <li>Conhecer o básico da Doutrina Social da Igreja (Bem Comum, Solidariedade).</li>
+                <li>Entender o rito da Crisma passo a passo.</li>
+                <li>Compromisso pós-Crisma: engajamento pastoral.</li>
+            </ul>
+
+            <div class="illustration-box">
+                <svg class="icon" viewBox="0 0 24 24" style="color:var(--lit-red);"><use href="#icon-dove"/></svg>
+                <figure><figcaption>Ide por todo o mundo e pregai o Evangelho.</figcaption></figure>
+            </div>
+
+            <h3>O Rito da Crisma</h3>
+            <ol>
+                <li><strong>Renovação das Promessas do Batismo:</strong> O candidato renuncia ao pecado e professa a fé.</li>
+                <li><strong>Imposição das Mãos:</strong> O Bispo estende as mãos sobre todos e invoca o Espírito.</li>
+                <li><strong>Unção (O momento essencial):</strong> O Bispo traça a cruz na testa com o Crisma dizendo "N., recebe por este sinal o Espírito Santo, o Dom de Deus".</li>
+            </ol>
+
+            <h3>Atividade: Carta ao Bispo</h3>
+            <p>Escrever a carta formal solicitando a Crisma, explicando por que deseja receber o sacramento e como pretende servir à Igreja.</p>
+
+            <hr>
+            <h3>📝 Quiz da Aula 30</h3>
+            <details>
+                <summary>Ver Questões e Respostas</summary>
+                <div class="quiz-container">
+                    <div class="question-block"><p><strong>1. Quem deve ser o padrinho de Crisma?</strong><br>A) Qualquer amigo<br>B) Um católico praticante, crismado, exemplar<br>C) Alguém rico<br>D) Ninguém</p><p class="correct-answer">B) Um católico praticante, crismado, exemplar</p></div>
+                    <div class="question-block"><p><strong>2. O que respondemos após a unção do Bispo?</strong><br>A) Obrigado<br>B) Amém<br>C) Aleluia<br>D) E com o teu espírito</p><p class="correct-answer">B) Amém</p></div>
+                    </div>
+            </details>
+        </div>
+    </section>
+
+    <section id="teste-final" class="card" style="border-top: 5px solid var(--lit-red);">
+        <h2>🎓 Teste Final e Compromisso</h2>
+        <p>Este teste abrange todo o conteúdo do ano. O aluno deve acertar 70% para aprovação direta.</p>
+        <details>
+            <summary>Acessar Prova Final (30 Questões + Estudo de Caso)</summary>
+            <div class="quiz-container">
+                <p><strong>Parte Prática:</strong> Descreva como você explicaria a Eucaristia para um amigo que não é católico.</p>
+                <p><strong>Parte Objetiva:</strong> (Gabarito anexo para impressão).</p>
+            </div>
+        </details>
+    </section>
+
+</main>
+
+<aside class="container">
+    <div class="card bg-branco">
+        <h3>📚 Recursos Adicionais</h3>
+        <ul>
+            <li><a href="#">Glossário Catequético</a></li>
+            <li><a href="#">Orações do Cristão (PDF)</a></li>
+            <li><a href="#">Guia para Padrinhos</a></li>
+        </ul>
+    </div>
+</aside>
+
+<footer>
+    <div class="container" style="text-align: center; color: #cbd5e0; padding: 20px;">
+        <p>&copy; 2026 Curso de Crisma - Paróquia Sagrado Coração.</p>
+        <p><small>Desenvolvido com carinho para a evangelização. Uso livre.</small></p>
+    </div>
+</footer>
+
+<script>
+    // Script simples para interatividade básica se necessário
+    console.log("Curso de Crisma 2026 carregado com sucesso.");
+</script>
+
+</body>
+</html>
