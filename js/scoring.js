@@ -1,9 +1,17 @@
 const store = {
-  get(key, def) { try { return JSON.parse(localStorage.getItem(key)) ?? def; } catch { return def; } },
-  set(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+  get(key, def) { 
+    try { 
+      return JSON.parse(localStorage.getItem(key)) ?? def; 
+    } catch { 
+      return def; 
+    } 
+  },
+  set(key, val) { 
+    localStorage.setItem(key, JSON.stringify(val)); 
+  }
 };
 
-export const scoring = {
+const scoring = {
   xp: () => store.get('xp', 0),
   addXP(amount) { store.set('xp', scoring.xp() + amount); },
   streak: () => store.get('streak', { count: 0, last: null }),
@@ -20,6 +28,11 @@ export const scoring = {
   badges: () => store.get('badges', []),
   grantBadge(id) {
     const b = scoring.badges();
-    if (!b.includes(id)) { b.push(id); store.set('badges', b); }
-  }
+    if (!b.includes(id)) { 
+      b.push(id); 
+      store.set('badges', b); 
+    }
+  },
+  progress: (id) => store.get(`progress-${id}`, 0),
+  setProgress(id, val) { store.set(`progress-${id}`, val); }
 };
