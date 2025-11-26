@@ -113,3 +113,6 @@ function startQuiz(id) {
 function progress(id) {
   return scoring.progress(id) || 0;
 }
+document.addEventListener("DOMContentLoaded", () => {
+  renderHome();
+});
