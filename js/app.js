@@ -1,28 +1,6 @@
-// Conecta os botões e inicializa a tela
-document.addEventListener("DOMContentLoaded", () => {
-  const app = document.getElementById("app");
-
-  document.getElementById("homeBtn").onclick = () => renderHome();
-  document.getElementById("profileBtn").onclick = () => renderProfile();
-  document.getElementById("darkBtn").onclick = () => {
-    document.body.classList.toggle("dark");
-  };
-
-  renderHome(); // Mostra a tela inicial ao carregar
-});
-
-
-const app = document.getElementById("app");
-
-// Botões de navegação
-document.getElementById("homeBtn").onclick = () => renderHome();
-document.getElementById("profileBtn").onclick = () => renderProfile();
-document.getElementById("darkBtn").onclick = () => {
-  document.body.classList.toggle("dark");
-};
-
 // Renderiza a tela inicial com as lições
 function renderHome() {
+  scoring.pingStreak();
   app.innerHTML = `
     <section class="grid">
       ${data.lessons.map((l, i) => `
@@ -33,6 +11,11 @@ function renderHome() {
           <button class="btn" onclick="startLesson('${l.id}')">Abrir lição</button>
         </div>
       `).join('')}
+    </section>
+    <section class="card" style="margin-top:16px">
+      <h3>Seu perfil</h3>
+      <p><span class="badge">XP: ${scoring.xp()}</span><span class="badge">Streak: ${scoring.streak().count} dias</span></p>
+      <p><strong>Conquistas:</strong> ${scoring.badges().join(', ') || 'Nenhuma ainda'}</p>
     </section>
   `;
 }
@@ -123,27 +106,20 @@ function startQuiz(id) {
   renderQuestion();
 }
 
-// Calcula progresso (exemplo simples)
+// Calcula progresso
 function progress(id) {
   return scoring.progress(id) || 0;
 }
-document.addEventListener("DOMContentLoaded", () => {
-  renderHome();
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const app = document.getElementById("app");
 
-  // Conecta os botões
-  const homeBtn = document.getElementById("homeBtn");
-  const profileBtn = document.getElementById("profileBtn");
-  const darkBtn = document.getElementById("darkBtn");
+// Inicializa a aplicação
+document.addEventListener("DOMContentLoaded", () => {
+  window.app = document.getElementById("app");
 
-  if (homeBtn) homeBtn.onclick = () => renderHome();
-  if (profileBtn) profileBtn.onclick = () => renderProfile();
-  if (darkBtn) darkBtn.onclick = () => {
+  document.getElementById("homeBtn").onclick = () => renderHome();
+  document.getElementById("profileBtn").onclick = () => renderProfile();
+  document.getElementById("darkBtn").onclick = () => {
     document.body.classList.toggle("dark");
   };
 
-  // Mostra a tela inicial ao carregar
   renderHome();
 });
