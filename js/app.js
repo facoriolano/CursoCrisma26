@@ -131,13 +131,20 @@ document.addEventListener("DOMContentLoaded", () => {
   renderHome();
 });
 document.addEventListener("DOMContentLoaded", () => {
+  const app = document.getElementById("app");
+
   // Conecta os botões
-  document.getElementById("homeBtn").onclick = () => renderHome();
-  document.getElementById("profileBtn").onclick = () => renderProfile();
-  document.getElementById("darkBtn").onclick = () => {
+  const homeBtn = document.getElementById("homeBtn");
+  const profileBtn = document.getElementById("profileBtn");
+  const darkBtn = document.getElementById("darkBtn");
+
+  if (homeBtn) homeBtn.onclick = () => renderHome();
+  if (profileBtn) profileBtn.onclick = () => renderProfile();
+  if (darkBtn) darkBtn.onclick = () => {
     document.body.classList.toggle("dark");
   };
 
-  // Renderiza a tela inicial
+  // Mostra a tela inicial ao carregar
   renderHome();
 });
+
