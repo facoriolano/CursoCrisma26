@@ -1,5 +1,8 @@
-const data = {
-  lessons: [
+
+    const data = {
+  lessons: []
+};
+
     {
       id: 'l1',
       title: 'Oração – Nossa fé nos reuniu',
