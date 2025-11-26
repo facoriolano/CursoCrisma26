@@ -1,3 +1,17 @@
+// Conecta os botões e inicializa a tela
+document.addEventListener("DOMContentLoaded", () => {
+  const app = document.getElementById("app");
+
+  document.getElementById("homeBtn").onclick = () => renderHome();
+  document.getElementById("profileBtn").onclick = () => renderProfile();
+  document.getElementById("darkBtn").onclick = () => {
+    document.body.classList.toggle("dark");
+  };
+
+  renderHome(); // Mostra a tela inicial ao carregar
+});
+
+
 const app = document.getElementById("app");
 
 // Botões de navegação
