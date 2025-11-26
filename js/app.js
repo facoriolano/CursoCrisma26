@@ -116,3 +116,14 @@ function progress(id) {
 document.addEventListener("DOMContentLoaded", () => {
   renderHome();
 });
+document.addEventListener("DOMContentLoaded", () => {
+  // Conecta os botões
+  document.getElementById("homeBtn").onclick = () => renderHome();
+  document.getElementById("profileBtn").onclick = () => renderProfile();
+  document.getElementById("darkBtn").onclick = () => {
+    document.body.classList.toggle("dark");
+  };
+
+  // Renderiza a tela inicial
+  renderHome();
+});
