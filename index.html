@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crisma Quest 2025</title>
-    
-    <!-- Bibliotecas Externas -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <style>
-        body { background-color: #f1f5f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crisma • Curso estilo Duolingo</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <div id="root"></div>
+  <header class="topbar">
+    <h1>Crisma 2026</h1>
+    <nav>
+      <button id="homeBtn">Início</button>
+      <button id="profileBtn">Perfil</button>
+      <button id="darkBtn" aria-label="Alternar tema">🌙</button>
+    </nav>
+  </header>
 
-    <!-- 1. Carrega as Perguntas (Banco de Dados) -->
-    <script src="questions.js"></script>
+  <main id="app">
+    <!-- A UI é gerada dinamicamente pelo app.js com base no data.js -->
+  </main>
 
-    <!-- 2. Carrega o App (Lógica) -->
-    <!-- CORRIGIDO: Adicionado type="text/babel" para que o React funcione. -->
-    <script type="text/babel" src="app.js"></script>
+  <footer class="footer">
+    <small>Feito com fé, para formar discípulos.</small>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
