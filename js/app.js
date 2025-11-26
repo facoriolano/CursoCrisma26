@@ -147,4 +147,3 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mostra a tela inicial ao carregar
   renderHome();
 });
-
