@@ -1,9 +1,22 @@
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { LessonContent, SyllabusItem } from "../types";
 
-// The API key must be obtained exclusively from the environment variable process.env.API_KEY.
-// Assume this variable is pre-configured, valid, and accessible.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Inicialização "preguiçosa" (Lazy). Só cria o cliente quando for usar.
+// Isso evita que o site trave na tela branca se a chave estiver vazia no início.
+let aiInstance: GoogleGenAI | null = null;
+
+const getAI = () => {
+  if (!aiInstance) {
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      console.error("API Key is missing!");
+      // Não lançamos erro aqui para não quebrar o app inteiro,
+      // o erro será capturado quando tentar gerar conteúdo.
+    }
+    aiInstance = new GoogleGenAI({ apiKey: apiKey || 'dummy_key_to_prevent_crash' });
+  }
+  return aiInstance;
+};
 
 const lessonSchema: Schema = {
   type: Type.OBJECT,
@@ -54,6 +67,7 @@ export const generateLessonData = async (lesson: SyllabusItem): Promise<LessonCo
   `;
 
   try {
+    const ai = getAI();
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
@@ -74,7 +88,7 @@ export const generateLessonData = async (lesson: SyllabusItem): Promise<LessonCo
     // Fallback content in case of API failure/quota limits
     return {
       intro: "Não foi possível carregar o conteúdo da IA agora.",
-      theory: ["Verifique sua conexão ou tente novamente mais tarde.", "Leia a passagem bíblica indicada: " + lesson.scripture],
+      theory: ["Verifique a conexão ou a chave da API.", "Leia a passagem bíblica indicada: " + lesson.scripture],
       questions: [
         {
           question: "Qual passagem devemos ler?",
