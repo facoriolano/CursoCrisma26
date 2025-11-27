@@ -1,11 +1,9 @@
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { LessonContent, SyllabusItem } from "../types";
 
-// NOTE: In a real production app, move API calls to a backend to protect the key.
-// For this demo, we assume the environment variable is available.
-const apiKey = process.env.API_KEY || ''; 
-
-const ai = new GoogleGenAI({ apiKey });
+// The API key must be obtained exclusively from the environment variable process.env.API_KEY.
+// Assume this variable is pre-configured, valid, and accessible.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const lessonSchema: Schema = {
   type: Type.OBJECT,
@@ -35,10 +33,6 @@ const lessonSchema: Schema = {
 };
 
 export const generateLessonData = async (lesson: SyllabusItem): Promise<LessonContent> => {
-  if (!apiKey) {
-    throw new Error("API Key missing");
-  }
-
   const isReview = lesson.isReview || lesson.isExam;
   
   const prompt = `
